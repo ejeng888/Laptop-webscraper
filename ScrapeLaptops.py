@@ -13,7 +13,9 @@ import os
 import configparser
 import ast
 
-PATH = 'C:\Program Files (x86)\chromedriver.exe'
+config = configparser.ConfigParser()
+config.read(os.path.join(os.getcwd(), 'config.ini'))
+PATH = config['directories']['chrome_driver_path']
 
 def Dell_search(link):
     list_of_prices = []
@@ -351,9 +353,6 @@ def Asus_search(link, want_screen_size,price,sort):
 
 def main():
 
-    config = configparser.ConfigParser()
-    config.read(os.path.join(os.getcwd(), 'config.ini'))
-
     list_of_dicts = []
     #Dell
     #Dell laptop searcher uses BeautifulSoup4 due to website simplicity
@@ -428,7 +427,8 @@ def main():
     print('\n',complete_dictionary)
         
     #Write to csv file
-    filepath = r'C:\Users\ejeng\OneDrive\Desktop\laptop_prices.csv'
+    save_path = config['directories']['save_path']
+    filepath = r"{}".format(save_path)
     if os.path.exists(filepath):
         os.remove(filepath)
     with open(filepath, 'w') as csv_file:  
