@@ -57,7 +57,7 @@ def Dell_search(link):
     return dell_dict
 
 def filter_dell_link(link,want_screen_size,filter_order,min,max):
-
+    #Screen size filter
     if(len(want_screen_size) > 0):
         link = link + '/' + str(want_screen_size[0]) + "?appliedRefinements=15677,33791,15676,16854,15674,15672"
         temp_list_of_ignore_ids = []
@@ -77,7 +77,7 @@ def filter_dell_link(link,want_screen_size,filter_order,min,max):
                 link = link[:start_index] + link[start_index + 1:]
             if link[-1] == ',':
                 link = link[:-1]
-
+    #Ascending or descending filter
     if(filter_order != ""):
         if(filter_order !="ascending" or filter_order != "descending"):
             print("No filter will be applied because improper value inputted")
@@ -86,7 +86,7 @@ def filter_dell_link(link,want_screen_size,filter_order,min,max):
             sort_by_refinements = {"ascending": "price-ascending", "descending": "price-descending"}
             sort_by_refinements = {filter_order: sort_by_refinements[filter_order]}
             link = link + "&sortBy=" + next(iter(sort_by_refinements.values()))
-
+    #min and max filter
     if((min != "") and (max != "")):
         price_range_refinements = {"min": min, "max": max}
         link = link + "&min=" + min + "&max=" + max
@@ -160,7 +160,7 @@ def HP_search(link, want_screen_size,filter_order,min,max):
 
 
 
-    #Price slider commented out because drag and drop by offest goes by pixels which i can't use because of different monitor size
+    #Price slider, push slider to left and right in a loop via pixel. Stops once it reaches around the user given min and max
     if((min != "") and (max != "")):
         if(exists == True):
 
@@ -427,7 +427,7 @@ def main():
         raise Exception("Valid value not given for lowest_or_highest_price. Can only be 'lowest' or 'highest'.")
     print('\n',complete_dictionary)
         
-
+    #Write to csv file
     filepath = r'C:\Users\ejeng\OneDrive\Desktop\laptop_prices.csv'
     if os.path.exists(filepath):
         os.remove(filepath)
