@@ -9,5 +9,8 @@ To run the program, ensure you have the Selenium, BeautifulSoup4, requests and c
 
 
 Known limitations and errors: 
-  > For the Dell website, only 12 laptops can be obtained at a time. This will be fixed in the future. <br>
+  > For the Dell website, only 12 laptops can be obtained at a time. The problem with fixing this error involves knowing when you are on the last possible page. Will be fixed in the future. <br>
   > When running the HP scraper function, pop-up ads may cause the program to hang. This can be resolved by simply closing the ad, which will resume to program.
+
+
+The script was working as of Jan. 6 2022. If any of these websites received updates since then, the program may no longer work.
